@@ -1,0 +1,74 @@
+<h1><%= @product.title %></h1>
+
+<h2>Description:</h2>
+<p><%= @product.description %>
+
+<h2>Price: <%= @product.price %> </h2>
+<div>
+    <small>
+        <%= link_to 'Edit', edit_product_path(@product) %>
+    </small>
+    
+    <small><%= link_to(
+      "Delete",
+      product_path(@product),
+      method: :delete,
+      data: {
+        confirm: "REALLY?"
+      }
+    ) %>
+    </small>
+</div>
+
+<h1>REVIEWS</h1></br>
+<h3>Leave a review for this product.  Must include rating from 0 to 5.</h3>
+
+<%= form_for [@product, @review] do |f| %>
+  <% if @review.errors.present? %>
+    <p>
+      <%= @review.errors.full_messages.join(', ') %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= f.text_area(
+      :body,
+      cols: 60,
+      rows: 10,
+      placeholder: "Enter a review of this product"
+    ) %>
+    </br>
+    <%= f.number_field :rating %>
+  </div>
+
+  <%= f.submit "Submit" %>
+<% end %>
+
+</br>
+
+<div class="review-list">
+  <% @reviews.each do |review| %>
+    <div>
+      <p>
+        <%= review.body %> <br />
+        <small>
+          <%= link_to(
+            "Delete",
+            product_review_path(@product.id, review.id),
+            method: :delete,
+            data: { confirm: "Are you sure?" }
+          ) %>
+        </small>
+        .
+        <small>
+          Posted <%= time_ago_in_words(review.created_at) %> ago
+        </small>
+        .
+        <small>
+          Last edited <%= time_ago_in_words(review.updated_at) %> ago
+        </small>
+      </p>
+    </div>
+  <% end %>
+</div>
+

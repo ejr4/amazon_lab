@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Amazon</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+   <%= link_to 'HOME', root_path %>
+  <%= link_to 'ABOUT' , about_us_path %>
+  <%= link_to 'CONTACT US' , contact_us_path %>
+  <%= link_to 'PRODUCTS' , products_path %>
+
+  <%= yield %>
+
+  </body>
+</html>
