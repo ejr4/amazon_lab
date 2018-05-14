@@ -13,6 +13,26 @@
   <%= link_to 'ABOUT' , about_us_path %>
   <%= link_to 'CONTACT US' , contact_us_path %>
   <%= link_to 'PRODUCTS' , products_path %>
+  <% if user_signed_in? %>
+      <span>Hello, <%= current_user.first_name %>!</span>
+      <%= link_to(
+        'SIGN OUT',
+        session_path,
+        method: :delete
+      ) %>
+    <% else %>
+      <%= link_to 'SIGN IN', new_session_path %>
+      <%= link_to 'SIGN UP', new_user_path %>
+    <% end %>
+
+    <hr>
+
+  <% if flash[:notice].present?%>
+  <div class="flash-message">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+  
 
   <%= yield %>
 

@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     has_many :reviews
+    belongs_to :user
 
     #validates is a method from ActiveRecord
     #creates validations to enforce a shape to your model

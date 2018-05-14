@@ -19,6 +19,9 @@
     ) %>
     </small>
 </div>
+<div>
+<small>Posted by <%= @product.user&.full_name || "[DELETED]" %></small>
+</div>
 
 <h1>REVIEWS</h1></br>
 <h3>Leave a review for this product.  Must include rating from 0 to 5.</h3>
@@ -61,9 +64,14 @@
         </small>
         .
         <small>
-          Posted <%= time_ago_in_words(review.created_at) %> ago
+        
+        <strong>
+          Posted by <%= review.user&.full_name || "[DELETE]"%> <%= time_ago_in_words(review.created_at) %> ago
+        </strong>
+    
         </small>
         .
+        
         <small>
           Last edited <%= time_ago_in_words(review.updated_at) %> ago
         </small>

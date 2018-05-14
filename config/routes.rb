@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   get('/about_us', {to: 'welcome#about'})
   get('/contact_us', {to: 'contact_us#new'})
   post('/contact_us/submit', {to: 'contact_us#create'})   
- 
-
-   resources :products do
+  resource :session, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create]
+  resources :products do
     resources :reviews
-   end
+  end
     # resources :reviews
     # the magic has replaced all of the following
   

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+before_action :authenticate_user!
 def new
     @product = Product.new
 end
@@ -8,6 +8,7 @@ end
 def show
     @product = Product.find(params[:id])
     @review = Review.new
+    @review.user = current_user
     @reviews = @product.reviews.order(created_at: :desc)
 
      
